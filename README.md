@@ -3,7 +3,7 @@
 > 🚀 **Universal AI Subagent Generator** — Instantly scaffold multi-agent workflows across **ALL major AI coding tools & IDEs** with a single `npx` command.
 
 [![npm version](https://img.shields.io/npm/v/@fairoz9961/subagents-ide.svg?color=blue)](https://www.npmjs.com/package/@fairoz9961/subagents-ide)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 ---
 
@@ -29,7 +29,7 @@ This automatically generates specialized subagent configurations for:
 
 | Subagent | File Name | Description |
 | :--- | :--- | :--- |
-| **Architect** | `architect.md` | Analyzes requirements, studies existing codebases, and designs modular architecture & implementation plans without modifying production code. |
+| **Architect** | `architect.md` | Analyzes requirements, studies existing codebases, and designs modular architecture & implementation plans without writing production code. |
 | **Engineer** | `engineer.md` | Follows architecture specifications to write clean, type-safe production code, run tests, and resolve linting errors. |
 | **Reviewer** | `reviewer.md` | Conducts thorough code quality reviews, security audits, performance checks, and maintainability recommendations. |
 | **Tester** | `tester.md` | Creates automated and manual test plans, identifies edge cases, logs bug reproductions, and verifies feature implementations. |
@@ -161,18 +161,8 @@ Responsibilities:
 
 ---
 
-## 📦 How to Publish to NPM (`@fairoz9961`)
-
-To publish or update the package under your NPM account:
-
-```bash
-cd subagents-ide
-npm login
-npm publish --access public
-```
-
----
-
 ## 📄 License
 
-MIT © [fairoz9961](https://github.com/Fairoz007)
+This project is open source software licensed under the [MIT License](LICENSE).
+
+Copyright (c) 2026 Fairoz ([fairoz9961](https://github.com/Fairoz007)).
