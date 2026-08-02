@@ -1,0 +1,36 @@
+{
+  "name": "@fairoz9961/subagents-ide",
+  "version": "1.0.0",
+  "description": "Scaffold custom AI subagents for Antigravity, Cursor, Claude Code, Windsurf, Cline, Roo Code, and Copilot into any project.",
+  "main": "bin/cli.js",
+  "bin": {
+    "subagents-ide": "bin/cli.js",
+    "create-subagents-ide": "bin/cli.js"
+  },
+  "files": [
+    "bin"
+  ],
+  "scripts": {
+    "start": "node bin/cli.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "subagents",
+    "subagents-ide",
+    "antigravity",
+    "cursor",
+    "claude-code",
+    "windsurf",
+    "cline",
+    "roo-code",
+    "copilot",
+    "ai",
+    "cli",
+    "scaffold",
+    "npx"
+  ],
+  "author": "fairoz9961",
+  "license": "MIT"
+}
