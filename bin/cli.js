@@ -419,6 +419,24 @@ Responsibilities:
   }
 };
 
+const ORCHESTRATOR_PROMPT = `# Autonomous Multi-Agent Orchestrator Rule
+
+Whenever a user inputs a prompt or feature request, you MUST automatically plan, split, and delegate tasks to specialized subagents:
+
+1. **Task Decomposition & Planning**: Automatically invoke \`@planner\` to deconstruct the request into discrete execution subtasks.
+2. **Architectural Specification**: Pass requirements to \`@architect\` (or \`@system-designer\` / \`@database-architect\` / \`@api-architect\`) to generate non-destructive structural plans.
+3. **Parallel Task Execution**: Delegate coding tasks to specialized domain engineers:
+   - Client UI & State ➔ \`@frontend-engineer\` / \`@ui-designer\` / \`@tailwind-expert\`
+   - APIs & Middleware ➔ \`@backend-engineer\` / \`@database-architect\`
+   - Mobile Apps ➔ \`@mobile-engineer\`
+   - AI & LLMs ➔ \`@ai-engineer\` / \`@prompt-engineer\` / \`@rag-expert\` / \`@mcp-expert\`
+   - Infrastructure & CI ➔ \`@devops-engineer\` / \`@docker-expert\` / \`@github-actions-expert\`
+4. **Code Quality & Security Verification**: Direct modified files to \`@security-auditor\` and \`@reviewer\` for vulnerability scanning and clean code verification.
+5. **Search Engine & Experience Optimization**: Run \`@search-optimization-expert\` for SEO, AEO, GEO, and Core Web Vitals optimization.
+6. **Automated Testing & QA**: Execute \`@tester\` or \`@automation-tester\` to verify bug fixes and test coverage.
+7. **Synthesis**: Aggregate reports into a clean, structured final response for the user.
+`;
+
 // --- Stack Detection Logic ---
 function detectProjectStack(cwd) {
   const selectedKeys = new Set(['planner', 'architect', 'engineer', 'reviewer', 'tester', 'search-optimization-expert', 'skill-downloader', 'context-manager']);
@@ -488,10 +506,15 @@ function detectProjectStack(cwd) {
 
 // --- Generator Functions ---
 function scaffoldAntigravity(cwd, activeKeys) {
-  const targetDir = path.join(cwd, '.agents', 'agents');
-  fs.mkdirSync(targetDir, { recursive: true });
-  console.log('🤖 [Antigravity] Scaffolding .agents/agents/');
+  const targetDir = path.join(cwd, '.agents');
+  const agentsDir = path.join(targetDir, 'agents');
+  fs.mkdirSync(agentsDir, { recursive: true });
+  console.log('🤖 [Antigravity] Scaffolding .agents/AGENTS.md & .agents/agents/');
   
+  // Scaffold Master Workspace Orchestrator Rule
+  fs.writeFileSync(path.join(targetDir, 'AGENTS.md'), ORCHESTRATOR_PROMPT.trim() + '\n', 'utf8');
+  console.log('  ✓ .agents/AGENTS.md (Master Orchestrator)');
+
   for (const key of activeKeys) {
     const agent = SUBAGENTS[key];
     if (!agent) continue;
@@ -514,7 +537,7 @@ commandExecutionPolicy: sandbox
 
 ${agent.prompt}
 `;
-    fs.writeFileSync(path.join(targetDir, `${key}.md`), content.trim() + '\n', 'utf8');
+    fs.writeFileSync(path.join(agentsDir, `${key}.md`), content.trim() + '\n', 'utf8');
     console.log(`  ✓ .agents/agents/${key}.md`);
   }
 }
@@ -523,6 +546,18 @@ function scaffoldCursor(cwd, activeKeys) {
   const targetDir = path.join(cwd, '.cursor', 'rules');
   fs.mkdirSync(targetDir, { recursive: true });
   console.log('\n⚡ [Cursor IDE] Scaffolding .cursor/rules/');
+
+  // Scaffold Master Cursor Orchestrator Rule
+  const orchestratorRule = `---
+description: Autonomous Multi-Agent Orchestrator Rule
+globs: *
+alwaysApply: true
+---
+
+${ORCHESTRATOR_PROMPT}
+`;
+  fs.writeFileSync(path.join(targetDir, '00-orchestrator.mdc'), orchestratorRule.trim() + '\n', 'utf8');
+  console.log('  ✓ .cursor/rules/00-orchestrator.mdc');
   
   for (const key of activeKeys) {
     const agent = SUBAGENTS[key];
@@ -547,9 +582,13 @@ function scaffoldClaude(cwd, activeKeys) {
   console.log('\n🧠 [Claude Code] Scaffolding CLAUDE.md');
   const filePath = path.join(cwd, 'CLAUDE.md');
   
-  const content = `# Project AI Subagent Guidelines (Claude Code)
+  const content = `# Project AI Subagent Guidelines & Autonomous Orchestrator
 
-This repository configures an ecosystem of specialized AI subagents for modular task execution.
+${ORCHESTRATOR_PROMPT}
+
+---
+
+# Specialized Subagents Ecosystem
 
 ${Array.from(activeKeys).map(key => {
   const agent = SUBAGENTS[key];
@@ -572,6 +611,10 @@ function scaffoldClineAndRoo(cwd, activeKeys) {
 
   const clinerulesContent = `# Cline & Roo Subagent Ecosystem
 
+${ORCHESTRATOR_PROMPT}
+
+---
+
 ${Array.from(activeKeys).map(key => {
   const agent = SUBAGENTS[key];
   return `### Mode: ${key} (${agent.title})
@@ -585,15 +628,23 @@ ${agent.prompt}
 `;
 
   const roomodesContent = JSON.stringify({
-    customModes: Array.from(activeKeys).map(key => {
-      const agent = SUBAGENTS[key];
-      return {
-        slug: key,
-        name: agent.title,
-        roleDefinition: agent.prompt,
+    customModes: [
+      {
+        slug: "orchestrator",
+        name: "Master Orchestrator",
+        roleDefinition: ORCHESTRATOR_PROMPT,
         groups: ["read", "edit", "browser", "command"]
-      };
-    })
+      },
+      ...Array.from(activeKeys).map(key => {
+        const agent = SUBAGENTS[key];
+        return {
+          slug: key,
+          name: agent.title,
+          roleDefinition: agent.prompt,
+          groups: ["read", "edit", "browser", "command"]
+        };
+      })
+    ]
   }, null, 2);
 
   fs.writeFileSync(clinerulesPath, clinerulesContent.trim() + '\n', 'utf8');
@@ -610,7 +661,9 @@ function scaffoldCopilot(cwd, activeKeys) {
   const filePath = path.join(targetDir, 'copilot-instructions.md');
   const content = `# GitHub Copilot Subagent Ecosystem Instructions
 
-When assisting on this repository, act according to the appropriate specialized subagent role:
+${ORCHESTRATOR_PROMPT}
+
+---
 
 ${Array.from(activeKeys).map(key => {
   const agent = SUBAGENTS[key];
@@ -630,6 +683,10 @@ function scaffoldWindsurf(cwd, activeKeys) {
   
   const content = `# Windsurf Cascade Ecosystem Rules
 
+${ORCHESTRATOR_PROMPT}
+
+---
+
 ${Array.from(activeKeys).map(key => {
   const agent = SUBAGENTS[key];
   return `## ${agent.title} Subagent [${agent.category}]
@@ -648,7 +705,7 @@ function main() {
   const args = process.argv.slice(2);
   const isDetect = args.includes('--detect') || args.includes('--auto');
   
-  console.log('\n🚀 Universal AI Subagent Ecosystem Scaffolder v2.0.2 (@fairoz9961/subagents-ide)');
+  console.log('\n🚀 Universal AI Subagent Ecosystem & Autonomous Orchestrator v2.1.0 (@fairoz9961/subagents-ide)');
   console.log(`📁 Target Workspace: ${cwd}`);
   
   let activeKeys;
@@ -657,7 +714,7 @@ function main() {
     activeKeys = detectProjectStack(cwd);
     console.log(`💡 Auto-detected stack -> Activating ${activeKeys.size} specialized subagents.`);
   } else {
-    console.log('🌟 Mode: Scaffolding COMPLETE Ecosystem (All 44+ Experts)');
+    console.log('🌟 Mode: Scaffolding COMPLETE Ecosystem & Master Orchestrator (All 44+ Experts)');
     activeKeys = new Set(Object.keys(SUBAGENTS));
   }
 
@@ -669,14 +726,14 @@ function main() {
     scaffoldCopilot(cwd, activeKeys);
     scaffoldWindsurf(cwd, activeKeys);
 
-    console.log(`\n✨ Successfully deployed ALL ${activeKeys.size} specialized AI experts across ALL IDEs!`);
-    console.log('   • Antigravity (.agents/agents/)');
+    console.log(`\n✨ Successfully deployed Master Orchestrator & ${activeKeys.size} specialized AI experts across ALL IDEs!`);
+    console.log('   • Antigravity (.agents/AGENTS.md & .agents/agents/)');
     console.log('   • Cursor IDE (.cursor/rules/)');
     console.log('   • Claude Code (CLAUDE.md)');
     console.log('   • Cline & Roo Code (.clinerules, .roomodes)');
     console.log('   • GitHub Copilot (.github/copilot-instructions.md)');
     console.log('   • Windsurf Cascade (.windsurfrules)');
-    console.log('\n💡 Tip: Run `npx @fairoz9961/subagents-ide --detect` for tech stack auto-routing.\n');
+    console.log('\n💡 Commands: `npx subagents` or `npx @fairoz9961/subagents-ide`\n');
   } catch (err) {
     console.error('❌ Error scaffolding subagent ecosystem:', err.message);
     process.exit(1);
