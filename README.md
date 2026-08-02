@@ -1,53 +1,43 @@
-# subagents-ide (`@fairoz9961/subagents-ide`) — v2.0 🚀
+# @fairoz9961/subagents-ide
 
-> **Next-Generation Ecosystem of 40+ Specialized AI Experts & Intelligent Stack Auto-Routing** across **ALL major AI coding tools & IDEs** (Antigravity, Cursor, Claude Code, Windsurf, Cline, Roo Code, Copilot, Devin, and Codex).
+> 🚀 **Universal AI Subagent Ecosystem & Intelligent Stack Routing** — Instantly scaffold 44+ specialized AI subagent experts across **ALL major AI coding tools & IDEs** (Antigravity, Cursor, Claude Code, Windsurf, Cline, Roo Code, GitHub Copilot, Devin, and Codex) with a single `npx` command.
 
 [![npm version](https://img.shields.io/npm/v/@fairoz9961/subagents-ide.svg?color=blue)](https://www.npmjs.com/package/@fairoz9961/subagents-ide)
+[![npm downloads](https://img.shields.io/npm/dm/@fairoz9961/subagents-ide.svg)](https://www.npmjs.com/package/@fairoz9961/subagents-ide)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 ---
 
-## 💡 Quick Start
+## ⚡ Quick Start
 
-In any project repository, run:
+Scaffold specialized AI subagents into any project repository with a single command:
 
 ```bash
 npx @fairoz9961/subagents-ide
 ```
 
-### Modes & Flags
-- `npx @fairoz9961/subagents-ide` — **Intelligent Stack Auto-Routing**: Automatically inspects your codebase (Next.js, React, Node, Laravel, Python, Flutter, Docker, Kubernetes) and deploys only the relevant subagents.
-- `npx @fairoz9961/subagents-ide --all` — **Complete Ecosystem**: Deploys all 40+ specialized subagents.
+### Execution Modes
+- `npx @fairoz9961/subagents-ide` — **Intelligent Stack Auto-Routing (Default)**: Automatically inspects your codebase (Next.js, React, Node, Laravel, Python, Flutter, Docker, Kubernetes) and deploys only the relevant subagents.
+- `npx @fairoz9961/subagents-ide --all` — **Complete Ecosystem**: Deploys all 44+ specialized subagent experts across all IDE formats.
 
 ---
 
-## 🌐 Multi-IDE & AI Tool Support
+## 🌐 Supported AI Tools & IDE Formats
 
-Every generated subagent is natively formatted for your AI tools:
-- 🤖 **Antigravity / Gemini**: `.agents/agents/*.md`
-- ⚡ **Cursor IDE**: `.cursor/rules/*.mdc`
-- 🧠 **Claude Code**: `CLAUDE.md`
-- 🛠️ **Cline & Roo Code**: `.clinerules` & `.roomodes`
-- 🐙 **GitHub Copilot**: `.github/copilot-instructions.md`
-- 🏄 **Windsurf Cascade**: `.windsurfrules`
+Every generated subagent is natively formatted and placed in the correct location for your AI editor:
+
+| AI Tool / IDE | Target Directory / File | Description |
+| :--- | :--- | :--- |
+| **Antigravity / Gemini** | `.agents/agents/*.md` | Native subagent markdown definitions with custom tool policies. |
+| **Cursor IDE** | `.cursor/rules/*.mdc` | MDC rule files with glob boundaries and context rules. |
+| **Claude Code** | `CLAUDE.md` | Modular role and prompt instructions for Claude Code CLI. |
+| **Cline & Roo Code** | `.clinerules` & `.roomodes` | Custom modes, tool permissions, and slug routing. |
+| **GitHub Copilot** | `.github/copilot-instructions.md` | Repo-level instructions for GitHub Copilot in VS Code. |
+| **Windsurf Cascade** | `.windsurfrules` | Cascade agentic rules and multi-expert delegation. |
 
 ---
 
-## 🧠 Ecosystem Architecture (40+ Specialized Experts)
-
-```mermaid
-graph TD
-    User["User / Main AI"] --> Planner["Planner"]
-    Planner --> ContextManager["Context Manager"]
-    Planner --> Architect["Architect"]
-    Architect --> Engineers["Specialized Engineers"]
-    Architect --> Designers["UI/UX Experts"]
-    Engineers --> Quality["Code Quality & Security"]
-    Designers --> Quality
-    Quality --> Testing["QA & Automated Testing"]
-    Testing --> SearchOpt["Search & Web Optimization"]
-    SearchOpt --> ReleaseManager["Release Manager"]
-```
+## 🤖 Ecosystem Architecture (44+ Specialized Experts)
 
 ### 1. Core Workflow
 - **`planner`** — Deconstructs high-level requests into strategic roadmaps, agent directives, and execution phases.
@@ -119,7 +109,7 @@ graph TD
 
 ### 12. Context & Read-Only Research Experts
 - **`context-manager`** — Maintains codebase dependency graphs, tracks file changes, prevents context loss, and supplies architecture maps without altering code.
-- **`memory-manager`** — Stores and retrieves architectural decision records (ADRs), naming conventions, and historical bug fixes.
+- **`memory-manager`** — Stores ADRs (Architectural Decision Records), naming conventions, and tech stack preferences.
 - **`doc-researcher`** — Analyzes third-party documentation, API specifications, and framework manuals.
 
 ---
@@ -133,6 +123,12 @@ When you run `npx @fairoz9961/subagents-ide` without arguments:
 - **Flutter / Mobile**: Activates `mobile-engineer`, `ui-designer`, `qa-engineer`.
 - **Python / AI**: Activates `ai-engineer`, `prompt-engineer`, `rag-expert`, `vector-db-expert`, `mcp-expert`.
 - **Docker / Kubernetes**: Activates `devops-engineer`, `docker-expert`, `github-actions-expert`.
+
+---
+
+## 🏷️ Keywords
+
+`subagents`, `subagents-ide`, `ai-agents`, `antigravity`, `cursor`, `claude-code`, `windsurf`, `cline`, `roo-code`, `copilot`, `devin`, `codex`, `mcp`, `rag`, `seo`, `aeo`, `geo`, `cli`, `npx`
 
 ---
 
